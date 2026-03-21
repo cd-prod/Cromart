@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Personalizados</title>
+    <style>
+        /* ESTILOS VISUALES - Aquí personalizamos los colores */
+        body {
+            background-color: #1a1a1a; /* Fondo Mate Oscuro */
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        h1 { color: #00ffcc; margin-bottom: 5px; }
+        p.subtitle { color: #888; font-size: 0.9em; }
+
+        /* Grilla de productos en cuadros */
+        .contenedor-productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .tarjeta-producto {
+            background-color: #262626;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            border: 1px solid #333;
+        }
+
+        .tarjeta-producto:hover {
+            transform: translateY(-5px);
+            border-color: #00ffcc;
+        }
+
+        .foto-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+        }
+
+        .info {
+            padding: 15px;
+        }
+
+        .categoria {
+            font-size: 0.7em;
+            text-transform: uppercase;
+            color: #00ffcc;
+            letter-spacing: 1px;
+        }
+
+        .nombre {
+            font-size: 1.1em;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+
+        .boton-ws {
+            display: block;
+            text-align: center;
+            background-color: #25d366; /* Verde WhatsApp */
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Mi Tienda de Personalizados</h1>
+    <p class="subtitle">Regalos, Impresiones y Ploteos a medida</p>
+</header>
+
+<div class="contenedor-productos">
+    <div class="tarjeta-producto">
+        <div class="foto-placeholder">FOTO TAZA</div>
+        <div class="info">
+            <span class="categoria">Sublimación</span>
+            <div class="nombre">Taza Cerámica Personalizada</div>
+            <a href="https://wa.me/TU_NUMERO_AQUI?text=Hola! Me interesa la Taza Personalizada" class="boton-ws">Consultar por WhatsApp</a>
+        </div>
+    </div>
+
+    <div class="tarjeta-producto">
+        <div class="foto-placeholder">FOTO STICKERS</div>
+        <div class="info">
+            <span class="categoria">Vinilo de Corte</span>
+            <div class="nombre">Stickers para Termos/Mates</div>
+            <a href="#" class="boton-ws">Consultar por WhatsApp</a>
+        </div>
+    </div>
+
+    <div class="tarjeta-producto">
+        <div class="foto-placeholder">FOTO FOLLETOS</div>
+        <div class="info">
+            <span class="categoria">Imprenta</span>
+            <div class="nombre">Folletos y Flyers Full Color</div>
+            <a href="#" class="boton-ws">Consultar por WhatsApp</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

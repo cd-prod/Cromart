@@ -85,16 +85,12 @@
         }
 
         .imagen-prod {
-            width: 100%;
-            height: 250px;
-            background: #333;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8em;
-            color: #555;
-            object-fit: cover;
-        }
+    width: 100%;
+    height: 280px; /* Un poquito más alto para que luzca mejor */
+    object-fit: contain; /* Muestra la imagen COMPLETA sin recortar nada */
+    background-color: #222; /* Fondo sutil para el espacio que sobre */
+    display: block;
+}
 
         .info { padding: 20px; }
 
@@ -170,33 +166,123 @@
 </header>
 
 <div class="contenedor">
-    <div class="tarjeta">
+    <div class="tarjeta sublimacion">
         <img src="taza1.jpg" class="imagen-prod" alt="Taza personalizada">
         <div class="info">
             <span class="cat-tag">Sublimación</span>
-            <div class="nombre">Taza Personalizada</div>
-            <span class="precio">Consultar precio</span>
-            <a href="https://wa.me/5493492000000?text=Hola Cromart! Me interesa la Taza Personalizada" class="btn-pedido">Pedir por WhatsApp</a>
+            <div class="nombre">Taza Cerámica</div>
+            <span class="precio">Consultar</span>
+            <a href="https://wa.me/TUNUMERO?text=Consulta: Taza" class="btn-pedido">Pedir por WhatsApp</a>
         </div>
     </div>
 
-    <div class="tarjeta">
-        <img src="stickers1.jpg" class="imagen-prod" alt="Plancha de Stickers">
+    <div class="tarjeta sublimacion">
+        <div class="imagen-prod">FOTO ALMOHADA</div>
         <div class="info">
-            <span class="cat-tag">Stickers</span>
-            <div class="nombre">Plancha de Stickers</div>
-            <span class="precio">Consultar precio</span>
-            <a href="https://wa.me/5493492000000?text=Hola Cromart! Me interesa la plancha de stickers" class="btn-pedido">Pedir por WhatsApp</a>
+            <span class="cat-tag">Sublimación</span>
+            <div class="nombre">Almohadón Personalizado</div>
+            <span class="precio">Consultar</span>
+            <a href="#" class="btn-pedido">Pedir por WhatsApp</a>
         </div>
     </div>
 
-    <div class="tarjeta">
-        <img src="vinilo1.jpg" class="imagen-prod" alt="Vinilo de Corte">
+    <div class="tarjeta sublimacion">
+        <div class="imagen-prod">FOTO GORRA</div>
+        <div class="info">
+            <span class="cat-tag">Sublimación</span>
+            <div class="nombre">Gorra Trucker</div>
+            <span class="precio">Consultar</span>
+            <a href="#" class="btn-pedido">Pedir por WhatsApp</a>
+        </div>
+    </div>
+
+    <div class="tarjeta sublimacion">
+        <div class="imagen-prod">FOTO REMERA</div>
+        <div class="info">
+            <span class="cat-tag">Sublimación</span>
+            <div class="nombre">Remera de Modal</div>
+            <span class="precio">Consultar</span>
+            <a href="#" class="btn-pedido">Pedir por WhatsApp</a>
+        </div>
+    </div>
+
+    <div class="tarjeta vinilos">
+        <img src="vinilo1.jpg" class="imagen-prod" alt="Vinilo de corte">
         <div class="info">
             <span class="cat-tag">Vinilos</span>
-            <div class="nombre">Vinilo de Corte (Mate/Brillo)</div>
-            <span class="precio">Consultar precio</span>
-            <a href="https://wa.me/5493492000000?text=Hola Cromart! Quiero consultar por vinilos" class="btn-pedido">Pedir por WhatsApp</a>
+            <div class="nombre">Vinilo de Corte (Auto/Vidrio)</div>
+            <span class="precio">Consultar</span>
+            <a href="#" class="btn-pedido">Pedir por WhatsApp</a>
+        </div>
+    </div>
+
+    <div class="tarjeta vinilos">
+        <div class="imagen-prod">FOTO PLOTEO</div>
+        <div class="info">
+            <span class="cat-tag">Vinilos</span>
+            <div class="nombre">Ploteo de Notebook</div>
+            <span class="precio">Consultar</span>
+            <a href="#" class="btn-pedido">Pedir por WhatsApp</a>
+        </div>
+    </div>
+
+    <div class="tarjeta vinilos">
+        <div class="imagen-prod">FOTO HELADERA</div>
+        <div class="info">
+            <span class="cat-tag">Vinilos</span>
+            <div class="nombre">Renovación de Heladera</div>
+            <span class="precio">Consultar</span>
+            <a href="#" class="btn-pedido">Pedir por WhatsApp</a>
+        </div>
+    </div>
+
+    <div class="tarjeta vinilos">
+        <div class="imagen-prod">FOTO VIDRIERA</div>
+        <div class="info">
+            <span class="cat-tag">Vinilos</span>
+            <div class="nombre">Letras para Vidrieras</div>
+            <span class="precio">Consultar</span>
+            <a href="#" class="btn-pedido">Pedir por WhatsApp</a>
+        </div>
+    </div>
+
+    <div class="tarjeta stickers">
+        <img src="stickers1.jpg" class="imagen-prod" alt="Plancha stickers">
+        <div class="info">
+            <span class="cat-tag">Stickers</span>
+            <div class="nombre">Stickers para Mates</div>
+            <span class="precio">Consultar</span>
+            <a href="#" class="btn-pedido">Pedir por WhatsApp</a>
+        </div>
+    </div>
+
+    <div class="tarjeta stickers">
+        <div class="imagen-prod">FOTO ETIQUETAS</div>
+        <div class="info">
+            <span class="cat-tag">Stickers</span>
+            <div class="nombre">Etiquetas Escolares</div>
+            <span class="precio">Consultar</span>
+            <a href="#" class="btn-pedido">Pedir por WhatsApp</a>
+        </div>
+    </div>
+
+    <div class="tarjeta stickers">
+        <div class="imagen-prod">FOTO FOLLETOS</div>
+        <div class="info">
+            <span class="cat-tag">Stickers</span>
+            <div class="nombre">Folletos (Flyers)</div>
+            <span class="precio">Consultar</span>
+            <a href="#" class="btn-pedido">Pedir por WhatsApp</a>
+        </div>
+    </div>
+
+    <div class="tarjeta stickers">
+        <div class="imagen-prod">FOTO IMANES</div>
+        <div class="info">
+            <span class="cat-tag">Stickers</span>
+            <div class="nombre">Imanes Publicitarios</div>
+            <span class="precio">Consultar</span>
+            <a href="#" class="btn-pedido">Pedir por WhatsApp</a>
         </div>
     </div>
 </div>
@@ -204,6 +290,29 @@
 <a href="https://wa.me/5493492000000" class="float-ws">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35" alt="WhatsApp">
 </a>
+<script>
+    const botones = document.querySelectorAll('.btn-filtro');
+    const tarjetas = document.querySelectorAll('.tarjeta');
 
+    botones.forEach(boton => {
+        boton.addEventListener('click', () => {
+            const filtro = boton.textContent.toLowerCase();
+
+            tarjetas.forEach(tarjeta => {
+                // Si el botón dice "Todo", mostramos todo
+                if (filtro === 'todo') {
+                    tarjeta.style.display = 'block';
+                } else {
+                    // Si la tarjeta tiene la clase de la categoría, se muestra, sino se oculta
+                    if (tarjeta.classList.contains(filtro)) {
+                        tarjeta.style.display = 'block';
+                    } else {
+                        tarjeta.style.display = 'none';
+                    }
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>

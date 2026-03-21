@@ -6,166 +6,100 @@
     <title>Cromart | Personalizados</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-color: #1a1a1a;
-            --card-bg: #262626;
-            --accent-color: #00ffcc; /* Cian vibrante */
-            --text-color: #ffffff;
-            --ws-color: #25d366;
-        }
+/* --- NUEVOS ESTILOS DE ALINEACIÓN --- */
+.contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    /* Esto crea 4 columnas en PC, 2 en tablets y 1 en móviles */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+.tarjeta {
+    background: #262626;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #333;
+    transition: 0.3s;
+    
+    /* ESTO ES LA CLAVE */
+    display: flex; /* Convierte la tarjeta en un contenedor flexible */
+    flex-direction: column; /* Ordena los elementos de arriba a abajo */
+    justify-content: space-between; /* Empuja el botón al final y el título arriba */
+    height: 100%; /* Obliga a la tarjeta a llenar la altura de la fila */
+}
 
-        header {
-            text-align: center;
-            padding: 50px 20px;
-            background: linear-gradient(180deg, #111 0%, var(--bg-color) 100%);
-        }
+.tarjeta:hover {
+    border-color: #00ffcc;
+    transform: translateY(-5px);
+}
 
-        h1 { 
-            color: var(--accent-color); 
-            font-size: 2.5em; 
-            margin: 0;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .subtitle { color: #888; margin-top: 10px; }
-
-        /* Filtros/Categorías */
-        .categorias {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .btn-filtro {
-            background: transparent;
-            border: 1px solid var(--accent-color);
-            color: var(--accent-color);
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            margin: 5px;
-            transition: 0.3s;
-        }
-
-        .btn-filtro:hover {
-            background: var(--accent-color);
-            color: #000;
-        }
-
-        /* Grilla de productos */
-        .contenedor {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            padding: 20px;
-        }
-
-        .tarjeta {
-            background: var(--card-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid #333;
-            transition: 0.3s;
-            position: relative;
-        }
-
-        .tarjeta:hover {
-            border-color: var(--accent-color);
-            transform: translateY(-10px);
-        }
-
-        .imagen-prod {
+.imagen-prod {
     width: 100%;
-    height: 280px; /* Un poquito más alto para que luzca mejor */
-    object-fit: contain; /* Muestra la imagen COMPLETA sin recortar nada */
-    background-color: #222; /* Fondo sutil para el espacio que sobre */
+    height: 250px; /* Todas las fotos medirán lo mismo */
+    object-fit: cover; /* Se adaptará sin deformarse */
+    background-color: #333; /* Fondo para cuando no hay foto */
     display: block;
 }
 
-        .info { padding: 20px; }
-
-        .cat-tag {
-            font-size: 0.7em;
-            color: var(--accent-color);
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-
-        .nombre {
-            font-size: 1.2em;
-            margin: 10px 0;
-            font-weight: 700;
-        }
-
-        .precio {
-            color: #fff;
-            font-weight: 300;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .btn-pedido {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--ws-color);
-            color: white;
-            text-decoration: none;
-            padding: 12px;
-            border-radius: 12px;
-            font-weight: bold;
-            gap: 10px;
-        }
-
-        /* Botón Flotante de Contacto */
-        .float-ws {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--ws-color);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            z-index: 100;
-        }
-
-        @media (max-width: 600px) {
-            .contenedor { grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
-            .nombre { font-size: 0.9em; }
-            .imagen-prod { height: 160px; }
-            h1 { font-size: 1.8em; }
-        }
-        /* Efecto de aparición suave */
-.tarjeta {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+/* Contenedor de la información interna (título y precio) */
+.info {
+    padding: 15px;
+    flex-grow: 1; /* Permite que este espacio crezca para empujar al botón */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Alinea el título arriba y el precio abajo */
 }
 
-.tarjeta.visible {
-    opacity: 1;
-    transform: translateY(0);
+/* Alineación de los textos */
+.cat-tag {
+    font-size: 0.7em;
+    color: #00ffcc;
+    text-transform: uppercase;
 }
 
-/* Retraso para que no aparezcan todas juntas (efecto cascada) */
-.tarjeta:nth-child(1) { transition-delay: 0.1s; }
-.tarjeta:nth-child(2) { transition-delay: 0.2s; }
-.tarjeta:nth-child(3) { transition-delay: 0.3s; }
-.tarjeta:nth-child(4) { transition-delay: 0.4s; }
+.nombre {
+    font-size: 1.1em;
+    margin: 10px 0;
+    font-weight: 700;
+}
+
+.precio {
+    color: #fff;
+    font-weight: 300;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* El botón verde siempre al final */
+.btn-pedido {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #25d366;
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: bold;
+    gap: 10px;
+    width: calc(100% - 30px); /* Ajuste para el padding interno */
+    margin: 0 auto 15px auto; /* Centrado y con espacio inferior */
+}
+
+/* Estilos extra para los marcadores de "FOTO XXX" */
+.foto-placeholder {
+    width: 100%;
+    height: 250px;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    font-size: 0.8em;
+}
     </style>
 </head>
 <body>

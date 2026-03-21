@@ -6,99 +6,157 @@
     <title>Cromart | Personalizados</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-/* --- NUEVOS ESTILOS DE ALINEACIÓN --- */
+/* --- CONFIGURACIÓN GENERAL --- */
+:root {
+    --bg-color: #1a1a1a;
+    --card-bg: #262626;
+    --accent-color: #00ffcc;
+    --text-color: #ffffff;
+    --ws-color: #25d366;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+h1 { 
+    color: var(--accent-color); 
+    font-size: 2.5em; 
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.subtitle { color: #888; margin-top: 10px; }
+
+/* --- BOTONES DE FILTRO --- */
+.categorias {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.btn-filtro {
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 5px;
+    transition: 0.3s;
+}
+
+.btn-filtro:hover {
+    background: var(--accent-color);
+    color: #000;
+}
+
+/* --- GRILLA ALINEADA --- */
 .contenedor {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    /* Esto crea 4 columnas en PC, 2 en tablets y 1 en móviles */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    gap: 25px;
     padding: 20px;
 }
 
 .tarjeta {
-    background: #262626;
+    background: var(--card-bg);
     border-radius: 20px;
     overflow: hidden;
     border: 1px solid #333;
     transition: 0.3s;
-    
-    /* ESTO ES LA CLAVE */
-    display: flex; /* Convierte la tarjeta en un contenedor flexible */
-    flex-direction: column; /* Ordena los elementos de arriba a abajo */
-    justify-content: space-between; /* Empuja el botón al final y el título arriba */
-    height: 100%; /* Obliga a la tarjeta a llenar la altura de la fila */
+    display: flex; /* Para alinear contenido */
+    flex-direction: column;
+    height: 100%;
+    opacity: 0; /* Para el efecto de carga que querías */
+    transform: translateY(20px);
+}
+
+.tarjeta.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .tarjeta:hover {
-    border-color: #00ffcc;
+    border-color: var(--accent-color);
     transform: translateY(-5px);
 }
 
+/* --- IMÁGENES --- */
 .imagen-prod {
     width: 100%;
-    height: 250px; /* Todas las fotos medirán lo mismo */
-    object-fit: cover; /* Se adaptará sin deformarse */
-    background-color: #333; /* Fondo para cuando no hay foto */
+    height: 250px;
+    object-fit: contain; /* Para que no se corte tu trabajo */
+    background-color: #333;
     display: block;
 }
 
-/* Contenedor de la información interna (título y precio) */
+/* --- INFORMACIÓN Y BOTÓN --- */
 .info {
-    padding: 15px;
-    flex-grow: 1; /* Permite que este espacio crezca para empujar al botón */
+    padding: 20px;
+    flex-grow: 1; /* Empuja el botón hacia abajo */
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Alinea el título arriba y el precio abajo */
+    justify-content: space-between;
 }
 
-/* Alineación de los textos */
 .cat-tag {
     font-size: 0.7em;
-    color: #00ffcc;
+    color: var(--accent-color);
     text-transform: uppercase;
+    font-weight: bold;
 }
 
 .nombre {
-    font-size: 1.1em;
+    font-size: 1.2em;
     margin: 10px 0;
     font-weight: 700;
 }
 
 .precio {
-    color: #fff;
-    font-weight: 300;
-    margin-bottom: 10px;
-    display: block;
+    color: #ccc;
+    font-size: 0.9em;
+    margin-bottom: 15px;
 }
 
-/* El botón verde siempre al final */
 .btn-pedido {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #25d366;
+    display: block;
+    text-align: center;
+    background: var(--ws-color);
     color: white;
     text-decoration: none;
     padding: 12px;
     border-radius: 12px;
     font-weight: bold;
-    gap: 10px;
-    width: calc(100% - 30px); /* Ajuste para el padding interno */
-    margin: 0 auto 15px auto; /* Centrado y con espacio inferior */
 }
 
-/* Estilos extra para los marcadores de "FOTO XXX" */
-.foto-placeholder {
-    width: 100%;
-    height: 250px;
-    background-color: #333;
+/* --- BOTÓN FLOTANTE Y FOOTER --- */
+.float-ws {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--ws-color);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #555;
-    font-size: 0.8em;
+    z-index: 100;
+}
+
+@media (max-width: 600px) {
+    .contenedor { grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
 }
     </style>
 </head>

@@ -3,123 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Personalizados</title>
+    <title>Cromart | Personalizados</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        /* ESTILOS VISUALES - Aquí personalizamos los colores */
+        :root {
+            --bg-color: #1a1a1a;
+            --card-bg: #262626;
+            --accent-color: #00ffcc; /* Cian vibrante */
+            --text-color: #ffffff;
+            --ws-color: #25d366;
+        }
+
         body {
-            background-color: #1a1a1a; /* Fondo Mate Oscuro */
-            color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Poppins', sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
         }
 
         header {
             text-align: center;
-            padding: 40px 0;
-            border-bottom: 1px solid #333;
+            padding: 50px 20px;
+            background: linear-gradient(180deg, #111 0%, var(--bg-color) 100%);
         }
 
-        h1 { color: #00ffcc; margin-bottom: 5px; }
-        p.subtitle { color: #888; font-size: 0.9em; }
+        h1 { 
+            color: var(--accent-color); 
+            font-size: 2.5em; 
+            margin: 0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
 
-        /* Grilla de productos en cuadros */
-        .contenedor-productos {
+        .subtitle { color: #888; margin-top: 10px; }
+
+        /* Filtros/Categorías */
+        .categorias {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .btn-filtro {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin: 5px;
+            transition: 0.3s;
+        }
+
+        .btn-filtro:hover {
+            background: var(--accent-color);
+            color: #000;
+        }
+
+        /* Grilla de productos */
+        .contenedor {
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 20px;
         }
 
-        .tarjeta-producto {
-            background-color: #262626;
-            border-radius: 15px;
+        .tarjeta {
+            background: var(--card-bg);
+            border-radius: 20px;
             overflow: hidden;
-            transition: transform 0.3s;
             border: 1px solid #333;
+            transition: 0.3s;
+            position: relative;
         }
 
-        .tarjeta-producto:hover {
-            transform: translateY(-5px);
-            border-color: #00ffcc;
+        .tarjeta:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-10px);
         }
 
-        .foto-placeholder {
+        .imagen-prod {
             width: 100%;
-            height: 200px;
-            background-color: #333;
+            height: 250px;
+            background: #333;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 0.8em;
             color: #555;
+            object-fit: cover;
         }
 
-        .info {
-            padding: 15px;
-        }
+        .info { padding: 20px; }
 
-        .categoria {
+        .cat-tag {
             font-size: 0.7em;
+            color: var(--accent-color);
             text-transform: uppercase;
-            color: #00ffcc;
-            letter-spacing: 1px;
+            font-weight: bold;
         }
 
         .nombre {
-            font-size: 1.1em;
-            margin: 5px 0;
-            font-weight: bold;
+            font-size: 1.2em;
+            margin: 10px 0;
+            font-weight: 700;
         }
 
-        .boton-ws {
+        .precio {
+            color: #fff;
+            font-weight: 300;
+            margin-bottom: 15px;
             display: block;
-            text-align: center;
-            background-color: #25d366; /* Verde WhatsApp */
+        }
+
+        .btn-pedido {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--ws-color);
             color: white;
             text-decoration: none;
-            padding: 10px;
-            border-radius: 8px;
-            margin-top: 10px;
+            padding: 12px;
+            border-radius: 12px;
             font-weight: bold;
-            font-size: 0.9em;
+            gap: 10px;
+        }
+
+        /* Botón Flotante de Contacto */
+        .float-ws {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--ws-color);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            z-index: 100;
+        }
+
+        @media (max-width: 600px) {
+            .contenedor { grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
+            .nombre { font-size: 0.9em; }
+            .imagen-prod { height: 160px; }
+            h1 { font-size: 1.8em; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Mi Tienda de Personalizados</h1>
-    <p class="subtitle">Regalos, Impresiones y Ploteos a medida</p>
+    <h1>CROMART</h1>
+    <p class="subtitle">Diseños exclusivos & Personalizados</p>
+    
+    <div class="categorias">
+        <button class="btn-filtro">Todo</button>
+        <button class="btn-filtro">Sublimación</button>
+        <button class="btn-filtro">Vinilos</button>
+        <button class="btn-filtro">Stickers</button>
+    </div>
 </header>
 
-<div class="contenedor-productos">
-    <div class="tarjeta-producto">
-        <div class="foto-placeholder">FOTO TAZA</div>
+<div class="contenedor">
+    <div class="tarjeta">
+        <div class="imagen-prod">FOTO TAZA</div>
         <div class="info">
-            <span class="categoria">Sublimación</span>
-            <div class="nombre">Taza Cerámica Personalizada</div>
-            <a href="https://wa.me/TU_NUMERO_AQUI?text=Hola! Me interesa la Taza Personalizada" class="boton-ws">Consultar por WhatsApp</a>
+            <span class="cat-tag">Sublimación</span>
+            <div class="nombre">Taza Personalizada</div>
+            <span class="precio">Consultar precio</span>
+            <a href="https://wa.me/5493492000000?text=Hola Cromart! Me interesa la Taza Personalizada" class="btn-pedido">Pedir por WhatsApp</a>
         </div>
     </div>
 
-    <div class="tarjeta-producto">
-        <div class="foto-placeholder">FOTO STICKERS</div>
+    <div class="tarjeta">
+        <div class="imagen-prod">FOTO STICKERS</div>
         <div class="info">
-            <span class="categoria">Vinilo de Corte</span>
-            <div class="nombre">Stickers para Termos/Mates</div>
-            <a href="#" class="boton-ws">Consultar por WhatsApp</a>
+            <span class="cat-tag">Stickers</span>
+            <div class="nombre">Plancha de Stickers</div>
+            <span class="precio">Consultar precio</span>
+            <a href="https://wa.me/5493492000000?text=Hola Cromart! Me interesa la plancha de stickers" class="btn-pedido">Pedir por WhatsApp</a>
         </div>
     </div>
 
-    <div class="tarjeta-producto">
-        <div class="foto-placeholder">FOTO FOLLETOS</div>
+    <div class="tarjeta">
+        <div class="imagen-prod">FOTO VINILO</div>
         <div class="info">
-            <span class="categoria">Imprenta</span>
-            <div class="nombre">Folletos y Flyers Full Color</div>
-            <a href="#" class="boton-ws">Consultar por WhatsApp</a>
+            <span class="cat-tag">Vinilos</span>
+            <div class="nombre">Vinilo de Corte (Mate/Brillo)</div>
+            <span class="precio">Consultar precio</span>
+            <a href="https://wa.me/5493492000000?text=Hola Cromart! Quiero consultar por vinilos" class="btn-pedido">Pedir por WhatsApp</a>
         </div>
     </div>
 </div>
+
+<a href="https://wa.me/5493492000000" class="float-ws">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35" alt="WhatsApp">
+</a>
 
 </body>
 </html>

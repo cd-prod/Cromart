@@ -149,6 +149,23 @@
             .imagen-prod { height: 160px; }
             h1 { font-size: 1.8em; }
         }
+        /* Efecto de aparición suave */
+.tarjeta {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.tarjeta.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Retraso para que no aparezcan todas juntas (efecto cascada) */
+.tarjeta:nth-child(1) { transition-delay: 0.1s; }
+.tarjeta:nth-child(2) { transition-delay: 0.2s; }
+.tarjeta:nth-child(3) { transition-delay: 0.3s; }
+.tarjeta:nth-child(4) { transition-delay: 0.4s; }
     </style>
 </head>
 <body>
@@ -290,29 +307,77 @@
 <a href="https://wa.me/5493492000000" class="float-ws">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35" alt="WhatsApp">
 </a>
-<script>
-    const botones = document.querySelectorAll('.btn-filtro');
-    const tarjetas = document.querySelectorAll('.tarjeta');
+<footer style="background-color: #111; padding: 50px 20px; margin-top: 50px; border-top: 1px solid #333;">
+    <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+        
+        <div>
+            <h3 style="color: #00ffcc; text-transform: uppercase;">Contacto</h3>
+            <p style="color: #ccc;">📍 Rafaela, Santa Fe, Argentina</p>
+            <p style="color: #ccc;">📱 WhatsApp: +54 9 3492 XX-XXXX</p>
+            <p style="color: #ccc;">📧 Email: info@cromart.com.ar</p>
+            <div style="margin-top: 20px;">
+                <a href="#" style="color: #00ffcc; text-decoration: none; margin-right: 15px;">Instagram</a>
+                <a href="#" style="color: #00ffcc; text-decoration: none;">Facebook</a>
+            </div>
+        </div>
 
+        <div>
+            <h3 style="color: #00ffcc; text-transform: uppercase;">Horarios</h3>
+            <p style="color: #ccc;">Lunes a Viernes: 08:00 - 12:00 | 16:00 - 20:00</p>
+            <p style="color: #ccc;">Sábados: 09:00 - 13:00</p>
+            <p style="font-size: 0.8em; color: #666; margin-top: 20px;">© 2026 CROMART - Diseños Personalizados</p>
+        </div>
+
+        <div style="border-radius: 15px; overflow: hidden; height: 200px; border: 1px solid #333;">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m13!1m11!1m3!1d27244.5!2d-61.49!3d-31.25!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95caae41a99f1873%3A0x6378c8c22731c360!2sRafaela%2C%20Santa%20Fe!5e0!3m2!1ses!2sar!4v1711000000000!5m2!1ses!2sar" 
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+
+    </div>
+</footer>    
+<script>
+    const tarjetas = document.querySelectorAll('.tarjeta');
+    const botones = document.querySelectorAll('.btn-filtro');
+
+    // 1. Función para que aparezcan suavemente al cargar o scrollear
+    const aparecerTarjetas = () => {
+        tarjetas.forEach(tarjeta => {
+            const distanciaTop = tarjeta.getBoundingClientRect().top;
+            const alturaPantalla = window.innerHeight * 0.9; // Se activa un poquito antes de llegar
+
+            if (distanciaTop < alturaPantalla) {
+                tarjeta.classList.add('visible');
+            }
+        });
+    };
+
+    // 2. Lógica de Filtros mejorada
     botones.forEach(boton => {
         boton.addEventListener('click', () => {
-            const filtro = boton.textContent.toLowerCase();
+            // Normalizamos el texto del botón (ej: "Sublimación" -> "sublimacion")
+            const filtro = boton.textContent.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
             tarjetas.forEach(tarjeta => {
-                // Si el botón dice "Todo", mostramos todo
-                if (filtro === 'todo') {
-                    tarjeta.style.display = 'block';
-                } else {
-                    // Si la tarjeta tiene la clase de la categoría, se muestra, sino se oculta
-                    if (tarjeta.classList.contains(filtro)) {
+                tarjeta.classList.remove('visible'); // Quitamos el efecto para que vuelva a "entrar"
+                
+                setTimeout(() => {
+                    if (filtro === 'todo' || tarjeta.classList.contains(filtro)) {
                         tarjeta.style.display = 'block';
+                        // Pequeño delay para que la animación se vea bien al filtrar
+                        setTimeout(() => tarjeta.classList.add('visible'), 50);
                     } else {
                         tarjeta.style.display = 'none';
                     }
-                }
+                }, 200);
             });
         });
     });
+
+    // Ejecutar al cargar la página y al hacer scroll
+    window.addEventListener('scroll', aparecerTarjetas);
+    window.addEventListener('load', aparecerTarjetas);
 </script>
 </body>
 </html>

@@ -145,16 +145,21 @@ h1 {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background: var(--ws-color);
+    background: #25d366;
     width: 60px;
     height: 60px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 100;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    z-index: 9999; /* Esto lo separa de los productos */
+    transition: 0.3s;
 }
 
+.float-ws:hover {
+    transform: scale(1.1); /* Efecto de rebote al pasar el mouse */
+}
 @media (max-width: 600px) {
     .contenedor { grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
 }
@@ -296,9 +301,6 @@ h1 {
     </div>
 </div>
 
-<a href="https://wa.me/5493492681799" class="float-ws">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35" alt="WhatsApp">
-</a>
 <footer style="background-color: #111; padding: 50px 20px; margin-top: 50px; border-top: 1px solid #333;">
     <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
         
@@ -377,5 +379,12 @@ h1 {
     window.addEventListener('scroll', aparecerTarjetas);
     window.addEventListener('load', aparecerTarjetas);
 </script>
+    
+    <a href="https://wa.me/5493492XXXXXX?text=Hola%20Cromart!%20Te%20contacto%20desde%20la%20web%20por%20una%20consulta%20general" 
+   class="float-ws" 
+   target="_blank" 
+   id="whatsapp-fijo">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35" alt="WhatsApp">
+</a>
 </body>
 </html>

@@ -96,7 +96,7 @@ h1 {
 .imagen-prod {
     width: 100%;
     height: 250px;
-    object-fit: contain; /* Para que no se corte tu trabajo */
+    object-fit: cover; /* Cambiá 'contain' por 'cover' para llenar todo el marco */
     background-color: #333;
     display: block;
 }
@@ -156,12 +156,64 @@ h1 {
     z-index: 9999; /* Esto lo separa de los productos */
     transition: 0.3s;
 }
+        #btnSubir {
+    display: none; /* Se oculta por defecto */
+    position: fixed;
+    bottom: 90px; /* Arriba del botón de WhatsApp */
+    right: 25px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: var(--accent-color);
+    color: black;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
 
 .float-ws:hover {
     transform: scale(1.1); /* Efecto de rebote al pasar el mouse */
 }
 @media (max-width: 600px) {
     .contenedor { grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
+}
+        /* Estilos para el Lightbox */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 10000; /* Por encima de todo */
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.9); /* Fondo negro opaco */
+    cursor: zoom-out;
+}
+
+.modal-contenido {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 80%;
+    border: 2px solid var(--accent-color);
+    border-radius: 10px;
+    margin-top: 50px;
+}
+
+.cerrar {
+    position: absolute;
+    top: 20px; right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Permitir que las fotos del catálogo tengan el cursor de la lupa */
+.imagen-prod {
+    cursor: zoom-in;
 }
     </style>
 </head>
@@ -378,8 +430,52 @@ h1 {
     // Ejecutar al cargar la página y al hacer scroll
     window.addEventListener('scroll', aparecerTarjetas);
     window.addEventListener('load', aparecerTarjetas);
+    // Función para abrir la imagen
+const modal = document.getElementById("miModal");
+const imgModal = document.getElementById("imgAmpliada");
+
+document.querySelectorAll('.imagen-prod').forEach(img => {
+    img.addEventListener('click', function() {
+        modal.style.display = "block";
+        imgModal.src = this.src;
+    });
+});
+
+// Función para cerrar
+function cerrarModal() {
+    modal.style.display = "none";
+}
+
+// También cierra si hacés clic fuera de la foto
+modal.onclick = function() {
+    cerrarModal();
+}
+    // Mostrar el botón cuando se baja 300px
+window.onscroll = function() {
+    scrollFunction();
+};
+
+function scrollFunction() {
+    const btn = document.getElementById("btnSubir");
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        btn.style.display = "block";
+    } else {
+        btn.style.display = "none";
+    }
+}
+
+// Función para volver arriba suavemente
+function subirArriba() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+}
 </script>
-    
+    <div id="miModal" class="modal">
+    <span class="cerrar" onclick="cerrarModal()">&times;</span>
+    <img class="modal-contenido" id="imgAmpliada">
+</div>
+    <button onclick="subirArriba()" id="btnSubir" title="Volver arriba">
+    <span style="font-size: 20px;">↑</span>
+</button>
     <a href="https://wa.me/5493492681799?text=Hola%20Cromart!%20Te%20contacto%20desde%20la%20web%20por%20una%20consulta%20general" 
    class="float-ws" 
    target="_blank" 

@@ -19,13 +19,13 @@
             color: var(--text-color);
             font-family: 'Poppins', sans-serif;
             margin: 0; padding: 0;
-            overflow-x: hidden;
         }
 
         header { text-align: center; padding: 50px 20px; }
         h1 { color: var(--accent-color); font-size: 2.5em; text-transform: uppercase; margin: 0; }
         .subtitle { color: #888; margin-top: 10px; }
 
+        /* FILTROS */
         .categorias { text-align: center; margin: 20px 0; }
         .btn-filtro {
             background: transparent; border: 1px solid var(--accent-color);
@@ -34,9 +34,11 @@
         }
         .btn-filtro:hover { background: var(--accent-color); color: #000; }
 
+        /* GRILLA CORREGIDA */
         .contenedor {
             max-width: 1200px; margin: 0 auto;
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 25px; padding: 20px;
         }
 
@@ -44,14 +46,14 @@
             background: var(--card-bg); border-radius: 20px; overflow: hidden;
             border: 1px solid #333; transition: 0.3s;
             display: flex; flex-direction: column; height: 100%;
-            opacity: 0; transform: translateY(20px);
+            opacity: 1; /* Las dejamos visibles por defecto para evitar errores de carga */
         }
-        .tarjeta.visible { opacity: 1; transform: translateY(0); }
+        .tarjeta:hover { border-color: var(--accent-color); transform: translateY(-5px); }
 
         .imagen-prod {
             width: 100%; height: 250px;
             object-fit: contain; background-color: #222;
-            display: block; cursor: zoom-in; padding: 5px; box-sizing: border-box;
+            display: block; cursor: zoom-in; padding: 10px; box-sizing: border-box;
         }
 
         .info { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
@@ -64,6 +66,7 @@
             color: white; text-decoration: none; padding: 12px; border-radius: 12px; font-weight: bold;
         }
 
+        /* BOTONES FLOTANTES */
         .float-ws {
             position: fixed; bottom: 20px; right: 20px;
             background: #25d366; width: 60px; height: 60px; border-radius: 50%;
@@ -75,11 +78,12 @@
             display: none; position: fixed; bottom: 90px; right: 25px;
             z-index: 9998; border: none; background-color: var(--accent-color);
             color: black; cursor: pointer; border-radius: 50%;
-            width: 50px; height: 50px; font-weight: bold;
+            width: 50px; height: 50px; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
+        /* LIGHTBOX */
         .modal {
-            display: none; position: fixed; z-index: 10000;
+            display: none; position: fixed; z-index: 10001;
             left: 0; top: 0; width: 100%; height: 100%;
             background-color: rgba(0,0,0,0.9); cursor: zoom-out;
             align-items: center; justify-content: center;
@@ -106,13 +110,14 @@
     </div>
 </header>
 
-<div class="contenedor">
+<div class="contenedor" id="galeria">
     <div class="tarjeta sublimacion">
         <img src="taza1.jpg" class="imagen-prod" alt="Taza">
         <div class="info">
             <span class="cat-tag">Sublimación</span>
             <div class="nombre">Taza Cerámica</div>
-            <a href="https://wa.me/5493492681799?text=Hola!%20Info%20por%20Taza" class="btn-pedido">Pedir por WhatsApp</a>
+            <span class="precio">Consultar</span>
+            <a href="https://wa.me/5493492681799?text=Hola!%20Info%20por%20Taza" class="btn-pedido">WhatsApp</a>
         </div>
     </div>
     <div class="tarjeta sublimacion">
@@ -120,7 +125,26 @@
         <div class="info">
             <span class="cat-tag">Sublimación</span>
             <div class="nombre">Almohadón Personalizado</div>
-            <a href="https://wa.me/5493492681799?text=Hola!%20Info%20por%20Almohadon" class="btn-pedido">Pedir por WhatsApp</a>
+            <span class="precio">Consultar</span>
+            <a href="https://wa.me/5493492681799?text=Hola!%20Info%20por%20Almohadon" class="btn-pedido">WhatsApp</a>
+        </div>
+    </div>
+    <div class="tarjeta sublimacion">
+        <img src="gorra1.jpg" class="imagen-prod" alt="Gorra">
+        <div class="info">
+            <span class="cat-tag">Sublimación</span>
+            <div class="nombre">Gorra Trucker</div>
+            <span class="precio">Consultar</span>
+            <a href="https://wa.me/5493492681799?text=Hola!%20Info%20por%20Gorra" class="btn-pedido">WhatsApp</a>
+        </div>
+    </div>
+    <div class="tarjeta sublimacion">
+        <img src="remera1.jpg" class="imagen-prod" alt="Remera">
+        <div class="info">
+            <span class="cat-tag">Sublimación</span>
+            <div class="nombre">Remera de Modal</div>
+            <span class="precio">Consultar</span>
+            <a href="https://wa.me/5493492681799?text=Hola!%20Info%20por%20Remera" class="btn-pedido">WhatsApp</a>
         </div>
     </div>
     <div class="tarjeta vinilos">
@@ -128,7 +152,35 @@
         <div class="info">
             <span class="cat-tag">Vinilos</span>
             <div class="nombre">Vinilo de Corte</div>
-            <a href="https://wa.me/5493492681799?text=Hola!%20Info%20por%20Vinilo" class="btn-pedido">Pedir por WhatsApp</a>
+            <span class="precio">Consultar</span>
+            <a href="https://wa.me/5493492681799?text=Hola!%20Info%20por%20Vinilo" class="btn-pedido">WhatsApp</a>
+        </div>
+    </div>
+    <div class="tarjeta vinilos">
+        <img src="ploteonotebook1.jpg" class="imagen-prod" alt="Ploteo">
+        <div class="info">
+            <span class="cat-tag">Vinilos</span>
+            <div class="nombre">Ploteo de Notebook</div>
+            <span class="precio">Consultar</span>
+            <a href="https://wa.me/5493492681799?text=Hola!%20Info%20por%20Notebook" class="btn-pedido">WhatsApp</a>
+        </div>
+    </div>
+    <div class="tarjeta vinilos">
+        <img src="ploteoheladera1.jpg" class="imagen-prod" alt="Heladera">
+        <div class="info">
+            <span class="cat-tag">Vinilos</span>
+            <div class="nombre">Renovación de Heladera</div>
+            <span class="precio">Consultar</span>
+            <a href="https://wa.me/5493492681799?text=Hola!%20Info%20por%20Heladera" class="btn-pedido">WhatsApp</a>
+        </div>
+    </div>
+    <div class="tarjeta vinilos">
+        <img src="vinilovidriera1.jpg" class="imagen-prod" alt="Vidriera">
+        <div class="info">
+            <span class="cat-tag">Vinilos</span>
+            <div class="nombre">Letras para Vidrieras</div>
+            <span class="precio">Consultar</span>
+            <a href="https://wa.me/5493492681799?text=Hola!%20Info%20por%20Vidriera" class="btn-pedido">WhatsApp</a>
         </div>
     </div>
     <div class="tarjeta stickers">
@@ -136,31 +188,71 @@
         <div class="info">
             <span class="cat-tag">Stickers</span>
             <div class="nombre">Stickers para Mates</div>
-            <a href="https://wa.me/5493492681799?text=Hola!%20Info%20por%20Stickers" class="btn-pedido">Pedir por WhatsApp</a>
+            <span class="precio">Consultar</span>
+            <a href="https://wa.me/5493492681799?text=Hola!%20Info%20por%20Stickers" class="btn-pedido">WhatsApp</a>
         </div>
     </div>
+    <div class="tarjeta stickers">
+        <img src="etiquetasescolares1.jpg" class="imagen-prod" alt="Escolares">
+        <div class="info">
+            <span class="cat-tag">Stickers</span>
+            <div class="nombre">Etiquetas Escolares</div>
+            <span class="precio">Consultar</span>
+            <a href="https://wa.me/5493492681799?text=Hola!%20Info%20por%20Escolares" class="btn-pedido">WhatsApp</a>
+        </div>
     </div>
+    <div class="tarjeta stickers">
+        <img src="folletos1.jpg" class="imagen-prod" alt="Folletos">
+        <div class="info">
+            <span class="cat-tag">Stickers</span>
+            <div class="nombre">Folletos (Flyers)</div>
+            <span class="precio">Consultar</span>
+            <a href="https://wa.me/5493492681799?text=Hola!%20Info%20por%20Folletos" class="btn-pedido">WhatsApp</a>
+        </div>
+    </div>
+    <div class="tarjeta stickers">
+        <img src="imanes1.jpg" class="imagen-prod" alt="Imanes">
+        <div class="info">
+            <span class="cat-tag">Stickers</span>
+            <div class="nombre">Imanes Publicitarios</div>
+            <span class="precio">Consultar</span>
+            <a href="https://wa.me/5493492681799?text=Hola!%20Info%20por%20Imanes" class="btn-pedido">WhatsApp</a>
+        </div>
+    </div>
+</div>
 
 <footer style="background-color: #111; padding: 50px 20px; margin-top: 50px; border-top: 1px solid #333;">
-    <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px;">
         <div>
-            <h3 style="color: #00ffcc;">Contacto</h3>
-            <p>📍 Rafaela, Santa Fe</p>
-            <p>📱 +54 9 3492 681799</p>
+            <h3 style="color: #00ffcc; text-transform: uppercase;">Contacto</h3>
+            <p style="color: #ccc;">📍 Rafaela, Santa Fe, Argentina</p>
+            <p style="color: #ccc;">📱 WhatsApp: +54 9 3492 681799</p>
+            <p style="color: #ccc;">📧 Email: info@cromart.com.ar</p>
+            <div style="margin-top: 15px;">
+                <a href="#" style="color: var(--accent-color); text-decoration: none; margin-right: 15px;">Instagram</a>
+                <a href="#" style="color: var(--accent-color); text-decoration: none;">Facebook</a>
+            </div>
         </div>
-        <div style="border-radius: 15px; overflow: hidden; height: 200px; background: #222; position: relative; border: 1px solid #333;">
-            <a href="https://www.google.com/maps/search/Rafaela+Santa+Fe" target="_blank">
-                <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: url('https://maps.googleapis.com/maps/api/staticmap?center=-31.2503,-61.4867&zoom=14&size=400x200&key=AIzaSyA_TU_KEY_AQUI') center/cover;">
-                    <span style="color: #00ffcc; border: 1px solid #00ffcc; padding: 10px; background: rgba(0,0,0,0.7); border-radius: 5px;">Ver ubicación en Rafaela</span>
-                </div>
-            </a>
+        <div>
+            <h3 style="color: #00ffcc; text-transform: uppercase;">Horarios</h3>
+            <p style="color: #ccc;">Lun a Vie: 08:00-12:00 | 16:00-20:00</p>
+            <p style="color: #ccc;">Sábados: 09:00 - 13:00</p>
+        </div>
+        <div>
+            <div style="border-radius: 15px; overflow: hidden; height: 180px; border: 1px solid #333; background: #222; display: flex; align-items: center; justify-content: center; text-align: center;">
+                <a href="https://www.google.com/maps?q=Rafaela,Santa+Fe" target="_blank" style="color: var(--accent-color); text-decoration: none; padding: 20px;">
+                    <div style="font-size: 30px;">📍</div>
+                    <strong>Ver ubicación en Rafaela</strong><br>
+                    <span style="font-size: 0.8em; color: #888;">Hacé clic para abrir el mapa</span>
+                </a>
+            </div>
         </div>
     </div>
 </footer>
 
-<div id="miModal" class="modal"><span class="cerrar" onclick="cerrarModal()">&times;</span><img class="modal-contenido" id="imgAmpliada"></div>
+<div id="miModal" class="modal"><span class="cerrar" onclick="cerrarModal()">×</span><img class="modal-contenido" id="imgAmpliada"></div>
 <button onclick="subirArriba()" id="btnSubir">↑</button>
-<a href="https://wa.me/5493492681799?text=Hola%20Cromart!%20Consulta%20General" class="float-ws" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35"></a>
+<a href="https://wa.me/5493492681799?text=Hola%20Cromart!%20Consulta" class="float-ws" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35"></a>
 
 <script>
     const tarjetas = document.querySelectorAll('.tarjeta');
@@ -168,30 +260,39 @@
     const modal = document.getElementById("miModal");
     const imgModal = document.getElementById("imgAmpliada");
 
+    // Scroll: Botón subir
     window.onscroll = function() {
-        tarjetas.forEach(t => { if (t.getBoundingClientRect().top < window.innerHeight * 0.9) t.classList.add('visible'); });
-        btnSubir.style.display = (window.scrollY > 300) ? "block" : "none";
+        if (window.scrollY > 300) { btnSubir.style.display = "block"; } 
+        else { btnSubir.style.display = "none"; }
     };
 
+    // Lupa
     document.querySelectorAll('.imagen-prod').forEach(img => {
-        img.onclick = function() { modal.style.display = "flex"; imgModal.src = this.src; }
+        img.onclick = function() {
+            modal.style.display = "flex";
+            imgModal.src = this.src;
+        }
     });
-
     function cerrarModal() { modal.style.display = "none"; }
+    modal.onclick = function(e) { if(e.target !== imgModal) cerrarModal(); }
+
+    // Subir
     function subirArriba() { window.scrollTo({top: 0, behavior: 'smooth'}); }
-    
-    // Filtros
-    document.querySelectorAll('.btn-filtro').forEach(btn => {
-        btn.onclick = function() {
-            const f = this.textContent.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    // FILTROS CORREGIDOS
+    document.querySelectorAll('.btn-filtro').forEach(boton => {
+        boton.onclick = function() {
+            const filtro = this.textContent.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            
             tarjetas.forEach(t => {
-                t.style.display = (f === 'todo' || t.classList.contains(f)) ? 'flex' : 'none';
-                if(t.style.display === 'flex') setTimeout(() => t.classList.add('visible'), 50);
+                if (filtro === 'todo' || t.classList.contains(filtro)) {
+                    t.style.display = 'flex';
+                } else {
+                    t.style.display = 'none';
+                }
             });
         };
     });
-
-    window.onload = () => tarjetas.forEach(t => t.classList.add('visible'));
 </script>
 </body>
 </html>
